@@ -10,15 +10,32 @@
   top: 90px;
   right: 40px;
   z-index: 5;
-
+  overflow: hidden;
+  .summ {
+    text-align: center;
+    font-weight: bold;
+    
+    
+  }
+  .hint {
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+  }
   .cart-items {
     height: 240px;
     display: flex;
     flex-direction: column;
-    overflow: visible-scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-right: -50px; /* Maximum width of scrollbar */
+    padding-right: 50px; /* Maximum width of scrollbar */
   }
 
-  button {
+  custom-button {
     margin-top: auto;
   }
+  
+  
 }
+
