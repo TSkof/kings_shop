@@ -15,7 +15,7 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    <ToastContainer className="toast" limit={4}/>
+    <ToastContainer className="toast" limit={2}/>
   </Provider>,
   document.getElementById("root")
 );
