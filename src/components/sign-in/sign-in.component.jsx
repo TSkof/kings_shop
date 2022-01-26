@@ -23,10 +23,19 @@ class SignIn extends React.Component {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: "", password: "" });
-    } catch (err) {
-      console.log(err);
+    } catch(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+          alert('Wrong password or email.');
+       }  
+      if (errorCode === 'auth/user-not-found') {
+        alert('No user with this email was registered. Please sign up');
+      } else{
+          alert(errorMessage);
+        };
     }
-  };
+  }
 
   handleChange = (event) => {
     const { value, name } = event.target;

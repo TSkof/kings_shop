@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector} from 'reselect';
 import { auth } from "../../firebase/firebase.utils";
 
-import { ReactComponent as Logo } from "../../assets/king.svg";
+import { ReactComponent as Logo } from "../../assets/crown.svg";
 import "./header.styles.scss";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
@@ -17,6 +17,7 @@ const Header = ({ currentUser, hidden }) => (
       <Logo className="logo" />
     </Link>
     <div className="options">
+      {currentUser ? (<div className="option">Hi, {currentUser.displayName}</div>)  : null }
       <Link className="option" to="/shop">
         SHOP
       </Link>

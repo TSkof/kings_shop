@@ -11,7 +11,7 @@ export const showToast = ( type = "success", msg ) => {
     if (type === "success") {
       toast.success(msg, {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -23,7 +23,7 @@ export const showToast = ( type = "success", msg ) => {
     }else if (type === "info") {
         toast.info(msg, {
             position: "top-center",
-            autoClose: 3000,
+            autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -48,18 +48,26 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 cartItems: addItemToCart(state.cartItems, action.payload)
             }
         case CartActionTypes.REMOVE_ITEM:
-        showToast('info', action.payload.name + " " + action.payload.price + " € removed from cart successfully !" + String.fromCharCode('9996'));
         return {
             ...state,
             cartItems: removeItemFromCart(state.cartItems, action.payload)
         }
         case CartActionTypes.CLEAR_ITEM_FROM_CART:
-            showToast('info', "All " + action.payload.name+ " products removed from cart successfully !" + String.fromCharCode('10060'));
-            return {
-                ...state,
-                cartItems: state.cartItems.filter(
-                    cartItem => cartItem.id !== action.payload.id
-                    )
+            var answer = window.confirm("All " + action.payload.name + "'s will be deleted!")
+            if(answer){
+                showToast('info', "All " + action.payload.name+ " products removed from cart successfully !" + String.fromCharCode('10060'));
+                return {
+                    ...state,
+                    cartItems: state.cartItems.filter(
+                        cartItem => cartItem.id !== action.payload.id
+                        )
+                }
+            }
+            else {
+                return{
+                    ...state,
+                    cartItems: state.cartItems
+                }
             }
         default:
             return state;
